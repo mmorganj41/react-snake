@@ -9,7 +9,7 @@ interface Props {
 export default function SnakeItem(props: Props) {
     let {snake, speed} = props;
     const snakeComponent = snake.map((e, i) => (<div 
-            className='Snake' 
+            className={`Snake ${i || 'Head'}` }
             key={i}
             style={{
                 left: `${e[0] * 2}%`,

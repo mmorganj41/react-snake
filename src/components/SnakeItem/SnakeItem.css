@@ -4,3 +4,39 @@
     height: calc(var(--boardSize)/50);
     background-color: var(--colorThemeLightOrange);
 }
+
+.Snake.Head::before,.Snake.Head::after {
+    position: absolute;
+    background-color: green;
+    content: '';
+    --placement: 15%;
+    --width: 30%;
+    border-radius: 1rem;
+    width: var(--width);
+    height: 20%;
+    right: 20%;
+    animation: blinking 5s linear infinite;
+}
+
+.Snake.Head::before {
+    top: var(--placement);
+}
+
+.Snake.Head::after {
+    bottom: var(--placement);
+}
+
+@keyframes blinking {
+    0% {
+        width: var(--width);
+    }
+    40% {
+        width: var(--width);
+    }
+    60% {
+        width: 0%;
+    } 
+    80% {
+        width: var(--width);
+    }
+}
