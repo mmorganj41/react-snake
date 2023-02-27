@@ -7,8 +7,9 @@ interface Props {
 
 export default function SnakeItem(props: Props) {
     let {snake} = props;
-    const snakeComponent = snake.map((e) => (<div 
+    const snakeComponent = snake.map((e, i) => (<div 
             className='Snake' 
+            key={i}
             style={{
                 left: `${e[0] * 2}%`,
                 top: `${e[1] * 2}%`,

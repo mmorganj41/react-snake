@@ -31,8 +31,43 @@ function App() {
   let [state, dispatch] = useImmerReducer(stateReducer, initialState);
 
   useEffect(() => {
+    document.addEventListener('keydown', controls);
+    // const gameInterval = setInterval(moveSnake, state.speed);
+    return () => {
+      document.removeEventListener('keydown', controls);
+      // clearInterval(gameInterval);
+    };
+  }, []);
 
-  }, [state.game]);
+  function controls(e: KeyboardEvent): void {
+    switch(e.key) {
+      case 's' || "ArrowDown": 
+        dispatch({
+          type: 'control',
+          direction: 'down'
+        })
+        break;
+      case 'w' || 'ArrowUp':
+        dispatch({
+          type: 'control',
+          direction: 'up'
+        })
+        break;
+      case 'a' || 'ArrowLeft':
+        dispatch({
+          type: 'control',
+          direction: 'left'
+        })
+        break;
+      case 'd' || 'ArrowRight':
+        dispatch({
+          type: 'control',
+          direction: 'right'
+        })
+        break;
+    }
+    moveSnake();
+  }
 
   function generateFood(): [number, number] {
     let x = (Math.floor(Math.random()*48)+1);
@@ -45,29 +80,8 @@ function App() {
   }
 
   function moveSnake() {
-    let newSnake = [...state.snake]
-    let snakeHead = newSnake[0];
-    let newHead: SnakeSegment;
-    switch (state.direction) {
-      case 'down':
-        newHead = [snakeHead[0], snakeHead[1]+1];
-        break;
-      case 'up':
-        newHead = [snakeHead[0], snakeHead[1]-1];
-        break;
-      case 'left':
-        newHead = [snakeHead[0]-1, snakeHead[1]];
-        break;
-      default:
-        newHead = [snakeHead[0]+1, snakeHead[1]];
-    }
-    
-    newSnake.unshift(newHead);
-    newSnake.pop();
-
     dispatch({
       type: 'move',
-      newSnake,
     })
   }
 
@@ -87,13 +101,37 @@ export default App
 
 type Action = {
   type: 'move';
-  newSnake: Snake;
+} | {
+  type: 'control';
+  direction: Direction;
 }
+
 
 function stateReducer(draft: State, action: Action) {
   switch (action.type) {
     case 'move': {
-      draft.snake = action.newSnake;
+      let snakeHead = draft.snake[0];
+      let newHead: SnakeSegment;
+      switch (draft.direction) {
+        case 'down':
+          newHead = [snakeHead[0], snakeHead[1]+1];
+          break;
+        case 'up':
+          newHead = [snakeHead[0], snakeHead[1]-1];
+          break;
+        case 'left':
+          newHead = [snakeHead[0]-1, snakeHead[1]];
+          break;
+        default:
+          newHead = [snakeHead[0]+1, snakeHead[1]];
+      }
+    
+      draft.snake.pop();
+      draft.snake.unshift(newHead);
+      break;
+    }
+    case 'control': {
+      draft.direction = action.direction;
       break;
     }
     default: {
