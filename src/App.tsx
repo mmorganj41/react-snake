@@ -6,7 +6,7 @@ import SnakeItem from './components/SnakeItem/SnakeItem';
 
 import './App.css'
 
-type Direction = 'right' | 'left' | 'up' | 'down';
+export type Direction = 'right' | 'left' | 'up' | 'down';
 type SnakeSegment = [number, number];
 export type Snake = SnakeSegment[];
 export type Food = [number, number];
@@ -95,7 +95,7 @@ export default function App() {
     <div className="App">
       <div className="container">
         <div className='game'>
-          <SnakeItem snake={state.snake} speed={state.speed}/>
+          <SnakeItem snake={state.snake} speed={state.speed} direction={state.direction}/>
           <FoodItem food={state.food}/>
         </div>
       </div>
