@@ -42,18 +42,32 @@ export default function App() {
   let [state, dispatch] = useImmerReducer(stateReducer, initialState);
 
   useEffect(() => {
-    document.addEventListener('keydown', controls);
+    if (state.game) {
+      document.addEventListener('keydown', controls);
+    } else {
+      setTimeout(() => document.addEventListener('keydown', startGame), 1000);
+    }
 
     return () => {
-      document.removeEventListener('keydown', controls);
+      if (state.game) {
+        document.removeEventListener('keydown', controls);
+      } else {
+        document.removeEventListener('keydown', startGame);
+      }
     }
-  }, []);
+  }, [state.game]);
   useEffect(() => {
     const gameInterval = setInterval(moveSnake, state.speed);
     return () => {
       clearInterval(gameInterval);
     };
   }, [state.speed]);
+
+  function startGame(e: KeyboardEvent): void {
+    dispatch({
+      type: 'start',
+    })
+  }
 
   function controls(e: KeyboardEvent): void {
     switch(e.key) {
@@ -109,7 +123,7 @@ export default function App() {
 }
 
 type Action = {
-  type: 'move';
+  type: 'move' | 'start';
 } | {
   type: 'control';
   direction: Direction;
@@ -117,6 +131,9 @@ type Action = {
 
 function stateReducer(draft: State, action: Action) {
   switch (action.type) {
+    case 'start': {
+      return {...initialState, highScore: draft.highScore, game: true};
+    }
     case 'move': {
       if (!draft.game) return;
       let snakeHead = draft.snake[0];
@@ -162,8 +179,14 @@ function stateReducer(draft: State, action: Action) {
     let [headX, headY] = head;
 
     if (headX < 0 || headX >= 50 || headY < 0 || headY >= 50 ) {
+      if (newSnake.length > draft.highScore) {
+        draft.highScore = newSnake.length;
+      }
       return true;
     } else if (newSnake.some(([x, y]) => x === headX && y === headY)) {
+      if (newSnake.length > draft.highScore) {
+        draft.highScore = newSnake.length;
+      }
       return true;
     } else {
       return false;
