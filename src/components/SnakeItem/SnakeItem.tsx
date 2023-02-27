@@ -10,8 +10,8 @@ export default function SnakeItem(props: Props) {
     const snakeComponent = snake.map((e) => (<div 
             className='Snake' 
             style={{
-                left: `${Number(e[0]) * 2}%`,
-                top: `${Number(e[1]) * 2}%`,
+                left: `${e[0] * 2}%`,
+                top: `${e[1] * 2}%`,
             }}
         />));
 

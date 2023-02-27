@@ -10,8 +10,8 @@ export default function FoodItem(props: Props) {
 
     return (<div className='Food' 
             style={{
-                left: `${Number(food[0]) * 2}%`,
-                top: `${Number(food[1]) * 2}%`,
+                left: `${food[0] * 2}%`,
+                top: `${food[1] * 2}%`,
             }}
             />)
 }

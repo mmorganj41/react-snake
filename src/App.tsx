@@ -7,15 +7,15 @@ import SnakeItem from './components/SnakeItem/SnakeItem';
 import './App.css'
 
 type Direction = 'right' | 'left' | 'up' | 'down';
-type SnakeSegment = [Number, Number];
+type SnakeSegment = [number, number];
 export type Snake = SnakeSegment[];
-export type Food = [Number, Number];
+export type Food = [number, number];
 
 interface State {
   food: Food,
   direction: Direction,
   snake: Snake,
-  speed: Number,
+  speed: number,
 }
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
 
   let [state, dispatch] = useImmerReducer(stateReducer, initialState);
 
-  function generateFood(): [Number, Number] {
+  function generateFood(): [number, number] {
     let x = (Math.floor(Math.random()*48)+1);
     let y = (Math.floor(Math.random()*48)+1);
     if (x === state.snake[0][0] && y === state.snake[0][1]) {
@@ -39,8 +39,11 @@ function App() {
   }
 
   function moveSnake() {
+    let snakeHead = state.snake[0];
+    let newHead: SnakeSegment;
     switch (state.direction) {
       case 'down':
+        newHead = [snakeHead[0], snakeHead[1]+1]
         break;
       case 'up':
         break;
