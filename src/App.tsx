@@ -5,6 +5,7 @@ import FoodItem from './components/FoodItem/FoodItem';
 import SnakeItem from './components/SnakeItem/SnakeItem';
 
 import './App.css'
+import Header from './components/Header/Header';
 
 export type Direction = 'right' | 'left' | 'up' | 'down';
 type SnakeSegment = [number, number];
@@ -24,17 +25,17 @@ const movementDictionary = {
   'left': 'right',
   'up': 'down',
   'down': 'up',
+}  
+
+const initialState: State = {
+  game: true,
+  food: [25,25],
+  direction: 'right',
+  snake: [[2,2]],
+  speed: 100,
 }
 
 export default function App() {
-  const initialState: State = {
-    game: true,
-    food: [25,25],
-    direction: 'right',
-    snake: [[2,2]],
-    speed: 100,
-  }
-
   let [state, dispatch] = useImmerReducer(stateReducer, initialState);
 
   useEffect(() => {
@@ -44,7 +45,6 @@ export default function App() {
       document.removeEventListener('keydown', controls);
     }
   }, []);
-
   useEffect(() => {
     const gameInterval = setInterval(moveSnake, state.speed);
     return () => {
@@ -88,6 +88,8 @@ export default function App() {
   }
 
   return (
+    <>
+    <Header />
     <div className="App">
       <div className="container">
         <div className='game'>
@@ -96,6 +98,7 @@ export default function App() {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

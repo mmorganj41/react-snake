@@ -1,42 +1,10 @@
-:root {
-  --colorThemeExtraDark: #422C16;
-  --colorThemeDarker: #645342;
-  --colorThemeDark: #B19550;
-  --colorThemeMedium: #F1EBC0;
-  --colorThemeLight: #F9F8F3;
-  --colorThemeOrange: #D79050;
-  --colorThemeLightOrange: #deae72;
-  --boardSize: 28rem;
-}
-
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-body {
-  font-size: 1rem;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-}
-
-#root {
-  width: 100%;
-}
-
 .App {
   background-color: var(--colorThemeDark);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: calc(100vh - 3rem);
   width: 100%;
 }
 
