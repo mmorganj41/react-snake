@@ -6,6 +6,7 @@ import SnakeItem from './components/SnakeItem/SnakeItem';
 
 import './App.css'
 import Header from './components/Header/Header';
+import Menu from './components/Menu/Menu';
 
 export type Direction = 'right' | 'left' | 'up' | 'down';
 type SnakeSegment = [number, number];
@@ -18,6 +19,7 @@ interface State {
   direction: Direction,
   snake: Snake,
   speed: number,
+  highScore: number,
 }
 
 const movementDictionary = {
@@ -33,6 +35,7 @@ const initialState: State = {
   direction: 'right',
   snake: [[2,2]],
   speed: 100,
+  highScore: 0,
 }
 
 export default function App() {
@@ -92,10 +95,13 @@ export default function App() {
     <Header />
     <div className="App">
       <div className="container">
+        {state.game ?
         <div className='game'>
           <SnakeItem snake={state.snake} speed={state.speed} direction={state.direction}/>
           <FoodItem food={state.food}/>
-        </div>
+        </div> :
+        <Menu score={state.snake.length-1} highScore={state.highScore}/>
+        }
       </div>
     </div>
     </>

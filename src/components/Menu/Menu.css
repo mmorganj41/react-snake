@@ -1,0 +1,30 @@
+.Menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.Menu h1 {
+    text-transform: capitalize;
+}
+
+.Menu .score {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: '🐍';
+    background-color: white;
+    border-radius: .5rem;
+    padding: .2rem 1.5rem;
+    margin-top: 1rem;
+}
+
+ul {
+    list-style: inherit;
+}
+
+ul > li {
+    margin-left: .5rem;
+    padding-left: .5rem;
+}
