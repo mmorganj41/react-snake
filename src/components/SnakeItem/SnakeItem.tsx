@@ -27,8 +27,9 @@ export default function SnakeItem(props: Props) {
                 top: `${e[1] * 2}%`,
                 transition: `${speed}ms linear`,
                 transform: `${!i && `rotate(${rotationDirectionDictionary[direction]})`}`,
-            }}
-        />)});
+            }}>
+                {!i && <div className='tongue' />}
+            </div>)});
 
     return (<>{snakeComponent}</>);
 }

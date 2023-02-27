@@ -3,6 +3,7 @@
     width: calc(var(--boardSize)/50);
     height: calc(var(--boardSize)/50);
     background-color: var(--colorThemeLightOrange);
+    z-index: 4;
 }
 
 .Snake.Head::before,.Snake.Head::after {
@@ -13,6 +14,7 @@
     --width: 30%;
     border-radius: 1rem;
     width: var(--width);
+    z-index: 5;
     height: 20%;
     right: 20%;
     animation: blinking 5s linear infinite;
@@ -24,6 +26,19 @@
 
 .Snake.Head::after {
     bottom: var(--placement);
+}
+
+.Snake .tongue {
+    position: absolute;
+    background-color: red;
+    content: '';
+    width: 50%;
+    height: 15%;
+    left: 100%;
+    top: 50%;
+    z-index: -1;
+    transform: translateY(-50%);
+    animation: tongueflick 3s linear infinite;
 }
 
 @keyframes blinking {
@@ -38,5 +53,24 @@
     } 
     80% {
         width: var(--width);
+    }
+}
+
+@keyframes tongueflick {
+    0% {
+        transform: translateX(0%);
+        width: 50%;
+    }
+    20% {
+        transform: translateX(-100%);
+        width: 0%;
+    }
+    90% {
+        transform: translateX(-100%);
+        width: 0%;
+    }
+    100% {
+        transform: translateX(0%);
+        width: 50%;
     }
 }
