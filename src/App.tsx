@@ -39,12 +39,18 @@ export default function App() {
 
   useEffect(() => {
     document.addEventListener('keydown', controls);
-    const gameInterval = setInterval(moveSnake, state.speed);
+
     return () => {
       document.removeEventListener('keydown', controls);
+    }
+  }, []);
+
+  useEffect(() => {
+    const gameInterval = setInterval(moveSnake, state.speed);
+    return () => {
       clearInterval(gameInterval);
     };
-  }, []);
+  }, [state.speed]);
 
   function controls(e: KeyboardEvent): void {
     switch(e.key) {
@@ -124,6 +130,7 @@ function stateReducer(draft: State, action: Action) {
       if (touchedFood(newHead, draft.food)) {
         draft.food = generateFood();
         growSnake(draft.snake);
+        increaseSpeed();
       }
       if (checkCollison(draft.snake)) draft.game = false;
       break;
@@ -176,6 +183,12 @@ function stateReducer(draft: State, action: Action) {
 
   function growSnake(snake: Snake) {
     snake.push([NaN, NaN]);
+  }
+
+  function increaseSpeed() {
+    if (draft.speed > 31) {
+      draft.speed -= 3;
+    }
   }
 }
 
