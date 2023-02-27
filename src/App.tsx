@@ -79,7 +79,12 @@ function App() {
 
 export default App
 
-function stateReducer(draft, action) {
+type Action = {
+  type: 'move';
+  newSnake: Snake;
+}
+
+function stateReducer(draft: State, action: Action) {
   switch (action.type) {
     case 'move': {
       draft.snake = action.newSnake;
