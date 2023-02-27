@@ -7,7 +7,8 @@ import SnakeItem from './components/SnakeItem/SnakeItem';
 import './App.css'
 
 type Direction = 'right' | 'left' | 'up' | 'down';
-export type Snake = [Number, Number][];
+type SnakeSegment = [Number, Number];
+export type Snake = SnakeSegment[];
 export type Food = [Number, Number];
 
 interface State {
@@ -34,6 +35,19 @@ function App() {
       return generateFood();
     } else {
       return [x, y];
+    }
+  }
+
+  function moveSnake() {
+    switch (state.direction) {
+      case 'down':
+        break;
+      case 'up':
+        break;
+      case 'left':
+        break;
+      case 'right':
+        break;
     }
   }
 
