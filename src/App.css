@@ -38,3 +38,30 @@ main {
   height: 100vh;
   width: 100%;
 }
+
+.App .container {
+  width: 30rem;
+  height: 30rem;
+  background-color: rgb(153, 153, 153);
+  border-radius: 5rem;
+  box-shadow: 0 .25rem .75rem rgba(0,0,0,.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App .game {
+  width: 85%;
+  height: 85%;
+  border: rgb(138, 138, 138) .1rem solid;
+  position: relative;
+  background-color: var(--colorThemeLight);
+}
+
+.App .snake {
+  position: absolute;
+}
+
+.App .food {
+  position: absolute;
+}
