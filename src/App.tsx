@@ -19,7 +19,14 @@ interface State {
   speed: number,
 }
 
-function App() {
+const movementDictionary = {
+  'right': 'left',
+  'left': 'right',
+  'up': 'down',
+  'down': 'up',
+}
+
+export default function App() {
   const initialState: State = {
     game: true,
     food: [25,25],
@@ -32,10 +39,10 @@ function App() {
 
   useEffect(() => {
     document.addEventListener('keydown', controls);
-    // const gameInterval = setInterval(moveSnake, state.speed);
+    const gameInterval = setInterval(moveSnake, state.speed);
     return () => {
       document.removeEventListener('keydown', controls);
-      // clearInterval(gameInterval);
+      clearInterval(gameInterval);
     };
   }, []);
 
@@ -97,8 +104,6 @@ function App() {
   )
 }
 
-export default App
-
 type Action = {
   type: 'move';
 } | {
@@ -131,7 +136,9 @@ function stateReducer(draft: State, action: Action) {
       break;
     }
     case 'control': {
-      draft.direction = action.direction;
+      if (!(draft.direction === action.direction || movementDictionary[draft.direction] === action.direction)) {
+        draft.direction = action.direction;
+      }
       break;
     }
     default: {
