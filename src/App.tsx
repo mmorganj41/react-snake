@@ -73,7 +73,6 @@ export default function App() {
         })
         break;
     }
-    moveSnake();
   }
 
   function generateFood(): [number, number] {
@@ -96,7 +95,7 @@ export default function App() {
     <div className="App">
       <div className="container">
         <div className='game'>
-          <SnakeItem snake={state.snake}/>
+          <SnakeItem snake={state.snake} speed={state.speed}/>
           <FoodItem food={state.food}/>
         </div>
       </div>
@@ -140,9 +139,6 @@ function stateReducer(draft: State, action: Action) {
         draft.direction = action.direction;
       }
       break;
-    }
-    default: {
-      throw Error(`Unknown action: ${action.type}`);
     }
   }
 }
