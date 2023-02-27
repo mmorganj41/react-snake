@@ -1,9 +1,0 @@
-.Food {
-    position: absolute;
-    z-index: 100;
-    width: calc(var(--boardSize)/100);
-    height: calc(var(--boardSize)/100);
-    border-radius: calc(var(--boardSize)/100);
-    background-color: var(--colorThemeOrange);
-    border: var(--colorThemeDarker) .5em solid;
-}

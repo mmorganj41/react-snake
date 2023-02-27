@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
-import { useImmerReducer } from 'use-immer'
+import { useImmerReducer } from 'use-immer';
+import FoodItem from './components/FoodItem/FoodItem';
 import './App.css'
 
 type Direction = 'right' | 'left' | 'up' | 'down';
-type Snake = [Number, Number][];
-type Food = [Number, Number];
+export type Snake = [Number, Number][];
+export type Food = [Number, Number];
 
 interface State {
   food: Food,
@@ -36,7 +37,9 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <div className='game'></div>
+        <div className='game'>
+          <FoodItem food={state.food}/>
+        </div>
       </div>
     </div>
   )
