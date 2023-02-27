@@ -30,7 +30,7 @@ const movementDictionary = {
 }  
 
 const initialState: State = {
-  game: true,
+  game: false,
   food: [25,25],
   direction: 'right',
   snake: [[2,2]],
@@ -71,25 +71,29 @@ export default function App() {
 
   function controls(e: KeyboardEvent): void {
     switch(e.key) {
-      case 's' || "ArrowDown": 
+      case "ArrowDown":
+      case 's': 
         dispatch({
           type: 'control',
           direction: 'down'
         })
         break;
-      case 'w' || 'ArrowUp':
+      case 'ArrowUp':
+      case 'w':
         dispatch({
           type: 'control',
           direction: 'up'
         })
         break;
-      case 'a' || 'ArrowLeft':
+      case 'ArrowLeft':
+      case 'a':
         dispatch({
           type: 'control',
           direction: 'left'
         })
         break;
-      case 'd' || 'ArrowRight':
+      case 'ArrowRight':
+      case 'd':
         dispatch({
           type: 'control',
           direction: 'right'
