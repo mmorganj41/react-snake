@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useImmerReducer } from 'use-immer'
 import './App.css'
 
@@ -14,7 +15,7 @@ interface State {
 
 function App() {
   const initialState: State = {
-    food: generateFood(),
+    food: [50,50],
     direction: 'right',
     snake: [[2,2]],
     speed: 100,

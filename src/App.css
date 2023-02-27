@@ -6,6 +6,7 @@
   --colorThemeLight: #F9F8F3;
   --colorThemeOrange: #D79050;
   --colorThemeLightOrange: #deae72;
+  --boardSize: 28rem;
 }
 
 *,
@@ -51,17 +52,9 @@ main {
 }
 
 .App .game {
-  width: 85%;
-  height: 85%;
+  width: var(--boardSize);
+  height: var(--boardSize);
   border: rgb(138, 138, 138) .1rem solid;
   position: relative;
   background-color: var(--colorThemeLight);
-}
-
-.App .snake {
-  position: absolute;
-}
-
-.App .food {
-  position: absolute;
 }
