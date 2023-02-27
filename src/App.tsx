@@ -39,19 +39,30 @@ function App() {
   }
 
   function moveSnake() {
-    let snakeHead = state.snake[0];
+    let newSnake = [...state.snake]
+    let snakeHead = newSnake[0];
     let newHead: SnakeSegment;
     switch (state.direction) {
       case 'down':
-        newHead = [snakeHead[0], snakeHead[1]+1]
+        newHead = [snakeHead[0], snakeHead[1]+1];
         break;
       case 'up':
+        newHead = [snakeHead[0], snakeHead[1]-1];
         break;
       case 'left':
+        newHead = [snakeHead[0]-1, snakeHead[1]];
         break;
-      case 'right':
-        break;
+      default:
+        newHead = [snakeHead[0]+1, snakeHead[1]];
     }
+    
+    newSnake.unshift(newHead);
+    newSnake.pop();
+
+    dispatch({
+      type: 'move',
+      newSnake,
+    })
   }
 
   return (
@@ -70,6 +81,10 @@ export default App
 
 function stateReducer(draft, action) {
   switch (action.type) {
+    case 'move': {
+      draft.snake = action.newSnake;
+      break;
+    }
     default: {
       throw Error(`Unknown action: ${action.type}`);
     }
