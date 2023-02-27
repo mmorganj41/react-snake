@@ -12,6 +12,7 @@ export type Snake = SnakeSegment[];
 export type Food = [number, number];
 
 interface State {
+  game: boolean,
   food: Food,
   direction: Direction,
   snake: Snake,
@@ -20,6 +21,7 @@ interface State {
 
 function App() {
   const initialState: State = {
+    game: true,
     food: [25,25],
     direction: 'right',
     snake: [[2,2]],
@@ -27,6 +29,10 @@ function App() {
   }
 
   let [state, dispatch] = useImmerReducer(stateReducer, initialState);
+
+  useEffect(() => {
+
+  }, [state.game]);
 
   function generateFood(): [number, number] {
     let x = (Math.floor(Math.random()*48)+1);
