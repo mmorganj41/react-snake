@@ -1,0 +1,6 @@
+.Snake {
+    position: absolute;
+    width: calc(var(--boardSize)/50);
+    height: calc(var(--boardSize)/50);
+    background-color: var(--colorThemeLightOrange);
+}

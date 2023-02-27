@@ -1,6 +1,9 @@
 import { useEffect } from 'react';
 import { useImmerReducer } from 'use-immer';
+
 import FoodItem from './components/FoodItem/FoodItem';
+import SnakeItem from './components/SnakeItem/SnakeItem';
+
 import './App.css'
 
 type Direction = 'right' | 'left' | 'up' | 'down';
@@ -16,7 +19,7 @@ interface State {
 
 function App() {
   const initialState: State = {
-    food: [50,50],
+    food: [25,25],
     direction: 'right',
     snake: [[2,2]],
     speed: 100,
@@ -25,8 +28,8 @@ function App() {
   let [state, dispatch] = useImmerReducer(stateReducer, initialState);
 
   function generateFood(): [Number, Number] {
-    let x = (Math.floor(Math.random()*98)+1);
-    let y = (Math.floor(Math.random()*98)+1);
+    let x = (Math.floor(Math.random()*48)+1);
+    let y = (Math.floor(Math.random()*48)+1);
     if (x === state.snake[0][0] && y === state.snake[0][1]) {
       return generateFood();
     } else {
@@ -38,6 +41,7 @@ function App() {
     <div className="App">
       <div className="container">
         <div className='game'>
+          <SnakeItem snake={state.snake}/>
           <FoodItem food={state.food}/>
         </div>
       </div>

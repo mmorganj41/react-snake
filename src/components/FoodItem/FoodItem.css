@@ -5,5 +5,5 @@
     height: calc(var(--boardSize)/50);
     border-radius: calc(var(--boardSize)/50);
     background-color: var(--colorThemeOrange);
-    border: var(--colorThemeDarker) .15rem solid;
+    border: var(--colorThemeDark) .15rem solid;
 }
