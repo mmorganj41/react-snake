@@ -1,5 +1,6 @@
 import {Food} from '../../App';
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
+import {useImmer} from 'use-immer';
 import './FoodItem.css';
 
 interface Props {
@@ -16,10 +17,14 @@ const foodImages = [
 export default function FoodItem(props: Props) {
     let {food} = props;
 
-    const [image, setImage] = useState([0, 0]);
+    const [image, updateImage] = useImmer([0, 0]);
 
     useEffect(() => {
         
+        updateImage(draft => {
+                draft[0] = Math.floor(Math.random()*foodImages.length)
+            }
+        );
 
 
         return () => {
