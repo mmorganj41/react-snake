@@ -24,7 +24,7 @@
   height: var(--boardSize);
   border: rgb(138, 138, 138) .1rem solid;
   position: relative;
-  background-image: url('wood-floor.jpg');
+  background-image: url('sand.jpeg');
   background-size: cover;
   
 }
