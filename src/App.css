@@ -24,5 +24,7 @@
   height: var(--boardSize);
   border: rgb(138, 138, 138) .1rem solid;
   position: relative;
-  background-color: var(--colorThemeLight);
+  background-image: url('wood-floor.jpg');
+  background-size: cover;
+  
 }

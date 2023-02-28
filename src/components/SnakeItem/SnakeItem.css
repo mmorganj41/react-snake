@@ -2,7 +2,7 @@
     position: absolute;
     width: calc(var(--boardSize)/50);
     height: calc(var(--boardSize)/50);
-    background-color: var(--colorThemeLightOrange);
+    background-color: var(--colorThemeBrightOrange);
     z-index: 4;
 }
 

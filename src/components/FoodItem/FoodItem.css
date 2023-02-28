@@ -1,6 +1,6 @@
 .Food {
     position: absolute;
     z-index: 100;
-    width: calc(var(--boardSize)/40);
-    height: calc(var(--boardSize)/40);
+    width: calc(var(--boardSize)/35);
+    height: calc(var(--boardSize)/35);
 }
