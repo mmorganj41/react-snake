@@ -1,9 +1,6 @@
 .Food {
     position: absolute;
     z-index: 100;
-    width: calc(var(--boardSize)/50);
-    height: calc(var(--boardSize)/50);
-    border-radius: calc(var(--boardSize)/50);
-    background-color: var(--colorThemeOrange);
-    border: var(--colorThemeDark) .15rem solid;
+    width: calc(var(--boardSize)/40);
+    height: calc(var(--boardSize)/40);
 }
