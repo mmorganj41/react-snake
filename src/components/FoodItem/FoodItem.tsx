@@ -26,9 +26,19 @@ export default function FoodItem(props: Props) {
             }
         );
 
+        const animationInterval = setInterval(() => {
+            updateImage(draft => {
+                if (draft[1] < foodImages[0].length - 1) {
+                    draft[1] += 1;
+                } else {
+                    draft[1] = 0;
+                }
+            })
+        }, 250);
+
 
         return () => {
-
+            clearInterval(animationInterval);
         }
     }, [food])
 
